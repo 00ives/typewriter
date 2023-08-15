@@ -14,6 +14,8 @@ export default class Typewriter {
     { loop = false, typingSpeed = 50, deletingSpeed = 50 } = {}
   ) {
     this.element = document.createElement('div')
+    this.element.classList.add('whitespace')
+    this.element.innerText
     parent.append(this.element)
     this.loop = loop
     this.typingSpeed = typingSpeed
@@ -36,16 +38,42 @@ export default class Typewriter {
   }
 
   deleteChars(number: number) {
-    console.log(number)
+    this.#addToQueue((resolve) => {
+      let i = 0
+      const interval = setInterval(() => {
+        this.element.innerText = this.element.innerText?.substring(
+          0,
+          this.element.innerText.length - 1
+        )
+        i++
+        if (i >= number) {
+          clearInterval(interval)
+          resolve()
+        }
+      }, this.deletingSpeed)
+    })
     return this
   }
 
   deleteAll(deleteSpeed = this.deletingSpeed) {
-    console.log(`delete speed = ${deleteSpeed}`)
+    this.#addToQueue((resolve) => {
+      const interval = setInterval(() => {
+        this.element.innerText = this.element.innerText?.substring(
+          0,
+          this.element.innerText.length - 1
+        )
+        if (this.element.innerText.length === 0) {
+          clearInterval(interval)
+          resolve()
+        }
+      }, deleteSpeed)
+    })
     return this
   }
   pauseFor(duration: number) {
-    console.log(duration)
+    this.#addToQueue((resolve) => {
+      setTimeout(resolve, duration)
+    })
     return this
   }
 
