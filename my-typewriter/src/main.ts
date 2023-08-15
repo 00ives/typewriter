@@ -3,7 +3,7 @@ import Typewriter from './Typewriter'
 
 const typewriter = new Typewriter(
   document.querySelector('.whitespace') as HTMLDivElement,
-  { loop: true }
+  { loop: true, typingSpeed: 60, deletingSpeed: 50 }
 )
 
 typewriter
