@@ -13,7 +13,7 @@ typewriter
   .deleteAll(10)
   .typeString('Why is this so hard?')
   .pauseFor(1000)
-  .typeString('\n\nDoes everyone struggle this much?)
+  .typeString('\n\nDoes everyone struggle this much?')
   .pauseFor(1000)
   .typeString('\n\nThere has to be an easier way')
   .pauseFor(1000)
